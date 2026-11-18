@@ -1,3 +1,4 @@
+
 /* =========================================================
    SOVT TRANSLATOR ENGINE
    V1.5
@@ -7,18 +8,14 @@
 class TranslatorEngine {
 
     constructor(
-        dictionaryUrl = "./data/ITACHI_DICTIONARY.tsv",
+        dictionaryUrl = "/Data/ITACHI_DICTIONARY.tsv",
         apiUrl = ""
     ) {
 
         this.dictionaryUrl = dictionaryUrl;
-
         this.apiUrl = apiUrl;
-
         this.dictionary = new Map();
-
         this.loaded = false;
-
         this.loading = null;
     }
 
@@ -49,11 +46,9 @@ class TranslatorEngine {
                 );
 
                 if (!response.ok) {
-
                     throw new Error(
                         "Failed to load dictionary."
                     );
-
                 }
 
                 const text =
@@ -97,37 +92,31 @@ class TranslatorEngine {
             .trim()
             .replace(/\s+/g, " ");
 
-
         value = value
             .replace(/[إأآٱ]/g, "ا")
             .replace(/ى/g, "ي")
             .replace(/ؤ/g, "و")
             .replace(/ئ/g, "ي");
 
-
         value = value.replace(
             /[\u064B-\u065F\u0670]/g,
             ""
         );
-
 
         value = value.replace(
             /ـ+/g,
             ""
         );
 
-
         value = value.replace(
             /([\u0621-\u064A])\1{2,}/g,
             "$1$1"
         );
 
-
         value = value.replace(
             /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~،؛؟«»“”‘’…]+/g,
             " "
         );
-
 
         return value
             .replace(/\s+/g, " ")
@@ -230,16 +219,12 @@ class TranslatorEngine {
 
         let score = 0;
 
-
         if (
             originalNormalized ===
             candidateNormalized
         ) {
-
             score += 1000;
-
         }
-
 
         const originalWords =
             originalNormalized
@@ -251,22 +236,17 @@ class TranslatorEngine {
                 .split(" ")
                 .filter(Boolean);
 
-
         if (
             originalWords.length ===
             candidateWords.length
         ) {
-
             score += 100;
-
         }
-
 
         score += Math.min(
             candidateWords.length * 10,
             100
         );
-
 
         if (options.target === "ar") {
 
@@ -274,13 +254,10 @@ class TranslatorEngine {
                 /[\u0600-\u06FF]/
                     .test(candidate)
             ) {
-
                 score += 30;
-
             }
 
         }
-
 
         if (options.target === "en") {
 
@@ -288,13 +265,10 @@ class TranslatorEngine {
                 /^[\x00-\x7F]+$/
                     .test(candidate)
             ) {
-
                 score += 30;
-
             }
 
         }
-
 
         return score;
     }
@@ -314,11 +288,8 @@ class TranslatorEngine {
             !Array.isArray(translations) ||
             !translations.length
         ) {
-
             return null;
-
         }
-
 
         const scored =
             translations.map(
@@ -336,12 +307,10 @@ class TranslatorEngine {
                 })
             );
 
-
         scored.sort(
             (a, b) =>
                 b.score - a.score
         );
-
 
         return scored[0];
     }
@@ -375,16 +344,13 @@ class TranslatorEngine {
                     body: JSON.stringify({
 
                         text,
-
                         source,
-
                         target
 
                     })
 
                 }
             );
-
 
         if (!response.ok) {
 
@@ -394,10 +360,8 @@ class TranslatorEngine {
 
         }
 
-
         const data =
             await response.json();
-
 
         if (!data.success) {
 
@@ -407,7 +371,6 @@ class TranslatorEngine {
             );
 
         }
-
 
         return data;
     }
@@ -435,10 +398,8 @@ class TranslatorEngine {
             "&q=" +
             encodeURIComponent(text);
 
-
         const response =
             await fetch(url);
-
 
         if (!response.ok) {
 
@@ -448,10 +409,8 @@ class TranslatorEngine {
 
         }
 
-
         const data =
             await response.json();
-
 
         if (
             !Array.isArray(data) ||
@@ -464,14 +423,12 @@ class TranslatorEngine {
 
         }
 
-
         const translation =
             data[0]
                 .map(
                     part => part[0] || ""
                 )
                 .join("");
-
 
         if (!translation.trim()) {
 
@@ -480,7 +437,6 @@ class TranslatorEngine {
             );
 
         }
-
 
         return translation.trim();
     }
@@ -497,7 +453,6 @@ class TranslatorEngine {
 
         await this.load();
 
-
         if (
             typeof text !== "string" ||
             !text.trim()
@@ -506,14 +461,11 @@ class TranslatorEngine {
             return {
 
                 success: false,
-
                 type: "invalid_input",
-
                 translations: []
 
             };
         }
-
 
         const source =
             options.source || "auto";
@@ -529,7 +481,6 @@ class TranslatorEngine {
         const localTranslations =
             this.findExact(text);
 
-
         if (localTranslations.length) {
 
             const best =
@@ -542,13 +493,11 @@ class TranslatorEngine {
                     }
                 );
 
-
             if (best) {
 
                 return {
 
                     success: true,
-
                     type: "exact",
 
                     translations: [
@@ -581,7 +530,6 @@ class TranslatorEngine {
                     source,
                     target
                 );
-
 
             return {
 
@@ -629,11 +577,9 @@ class TranslatorEngine {
                     target
                 );
 
-
             return {
 
                 success: true,
-
                 type: "external",
 
                 translations: [
@@ -684,7 +630,7 @@ class TranslatorEngine {
 
 const translator =
     new TranslatorEngine(
-        "./data/ITACHI_DICTIONARY.tsv",
+        "/Data/ITACHI_DICTIONARY.tsv",
         ""
     );
 
