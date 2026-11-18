@@ -4,11 +4,10 @@
  * Firebase Authentication
  * Email + Google + GitHub
  * Email Verification
- * Version 2.0.0
+ * Version 2.1.0
  */
 
 (function () {
-
     "use strict";
 
     /* ================================
@@ -16,21 +15,14 @@
     ================================= */
 
     const firebaseConfig = {
-
-        apiKey: "YOUR_NEW_FIREBASE_API_KEY",
-
+        apiKey: "AIzaSyBvp1F7USxnwhbykdhJmcVdD8H2kap88Fk",
         authDomain: "sovdix-48ea4.firebaseapp.com",
-
         projectId: "sovdix-48ea4",
-
-        storageBucket: "YOUR_NEW_STORAGE_BUCKET",
-
-        messagingSenderId: "YOUR_NEW_MESSAGING_SENDER_ID",
-
-        appId: "YOUR_NEW_FIREBASE_APP_ID"
-
+        storageBucket: "sovdix-48ea4.firebasestorage.app",
+        messagingSenderId: "885539173175",
+        appId: "1:885539173175:web:610015125a9407824160b2",
+        measurementId: "G-5QB9PVM5HQ"
     };
-
 
     /* ================================
        STATE
@@ -38,17 +30,14 @@
 
     let firebaseApp = null;
     let firebaseAuth = null;
-
     let firebaseReady = false;
     let firebasePromise = null;
 
-
     /* ================================
-       LOAD SCRIPT
+       LOAD FIREBASE SDK
     ================================= */
 
     function loadScript(src) {
-
         return new Promise(function (resolve, reject) {
 
             const existing = document.querySelector(
@@ -56,7 +45,6 @@
             );
 
             if (existing) {
-
                 if (existing.dataset.loaded === "true") {
                     resolve();
                     return;
@@ -88,11 +76,8 @@
             };
 
             document.head.appendChild(script);
-
         });
-
     }
-
 
     /* ================================
        INITIALIZE FIREBASE
@@ -114,17 +99,6 @@
         firebasePromise = (async function () {
 
             try {
-
-                if (
-                    firebaseConfig.apiKey === "YOUR_NEW_FIREBASE_API_KEY" ||
-                    firebaseConfig.appId === "YOUR_NEW_FIREBASE_APP_ID" ||
-                    firebaseConfig.storageBucket === "YOUR_NEW_STORAGE_BUCKET" ||
-                    firebaseConfig.messagingSenderId === "YOUR_NEW_MESSAGING_SENDER_ID"
-                ) {
-                    throw new Error(
-                        "يجب وضع إعدادات Firebase الحقيقية أولاً."
-                    );
-                }
 
                 await loadScript(
                     "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"
@@ -168,7 +142,7 @@
 
                 firebaseReady = true;
 
-                console.log("SOVDIX AUTH: READY");
+                console.log("SOVDIX AUTH V2.1: READY");
 
                 return {
                     app: firebaseApp,
@@ -183,24 +157,35 @@
                 console.error("FIREBASE ERROR:", error);
 
                 throw error;
-
             }
 
         })();
 
         return firebasePromise;
-
     }
-
 
     /* ================================
        READY
     ================================= */
 
     async function ready() {
-        return await initializeFirebase();
+        return initializeFirebase();
     }
 
+    /* ================================
+       PROVIDER CHECK
+    ================================= */
+
+    function getProviderIds(user) {
+
+        if (!user || !Array.isArray(user.providerData)) {
+            return [];
+        }
+
+        return user.providerData.map(function (provider) {
+            return provider.providerId;
+        });
+    }
 
     /* ================================
        EMAIL VERIFICATION CHECK
@@ -208,40 +193,38 @@
 
     function isEmailVerified(user) {
 
-        if (!user) {
+        if (!user || !user.email) {
             return false;
         }
 
-        const isPasswordAccount =
-            user.providerData.some(function (provider) {
-                return provider.providerId === "password";
-            });
+        const providers = getProviderIds(user);
 
-        // Google and GitHub accounts use their provider
-        // authentication status instead of Firebase email verification.
-        if (!isPasswordAccount) {
-            return true;
+        // Email and password accounts
+        if (providers.includes("password")) {
+            return user.emailVerified === true;
         }
 
-        return user.emailVerified === true;
+        // Google accounts
+        if (providers.includes("google.com")) {
+            return user.emailVerified === true;
+        }
 
+        // GitHub accounts:
+        // Require Firebase's verified email status.
+        if (providers.includes("github.com")) {
+            return user.emailVerified === true;
+        }
+
+        return false;
     }
-
 
     /* ================================
        ACCESS CHECK
     ================================= */
 
     function canAccess(user) {
-
-        if (!user) {
-            return false;
-        }
-
         return isEmailVerified(user);
-
     }
-
 
     /* ================================
        SEND VERIFICATION EMAIL
@@ -257,6 +240,14 @@
             throw new Error("يجب تسجيل الدخول أولاً.");
         }
 
+        await user.reload();
+
+        user = firebaseAuth.currentUser;
+
+        if (!user) {
+            throw new Error("تعذر العثور على الحساب.");
+        }
+
         if (user.emailVerified) {
             return {
                 success: true,
@@ -270,9 +261,7 @@
             success: true,
             message: "تم إرسال رسالة التحقق بنجاح."
         };
-
     }
-
 
     /* ================================
        RESEND VERIFICATION EMAIL
@@ -290,22 +279,26 @@
 
         await user.reload();
 
-        if (user.emailVerified) {
+        const currentUser = firebaseAuth.currentUser;
+
+        if (!currentUser) {
+            throw new Error("تعذر العثور على الحساب.");
+        }
+
+        if (currentUser.emailVerified) {
             return {
                 success: true,
                 alreadyVerified: true
             };
         }
 
-        await user.sendEmailVerification();
+        await currentUser.sendEmailVerification();
 
         return {
             success: true,
             message: "تمت إعادة إرسال رسالة التحقق."
         };
-
     }
-
 
     /* ================================
        REFRESH USER
@@ -324,9 +317,7 @@
         await user.reload();
 
         return firebaseAuth.currentUser;
-
     }
-
 
     /* ================================
        CHECK VERIFICATION
@@ -341,9 +332,7 @@
         }
 
         return isEmailVerified(user);
-
     }
-
 
     /* ================================
        CURRENT USER
@@ -355,22 +344,20 @@
 
         return new Promise(function (resolve) {
 
-            let unsubscribe = function () {};
+            let unsubscribe = null;
 
             unsubscribe = firebaseAuth.onAuthStateChanged(
                 function (user) {
 
-                    unsubscribe();
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
 
                     resolve(user || null);
-
                 }
             );
-
         });
-
     }
-
 
     /* ================================
        EMAIL REGISTER
@@ -393,29 +380,21 @@
         const user = result.user;
 
         if (user && username) {
-
             await user.updateProfile({
                 displayName: username.trim()
             });
-
         }
 
-        // Send verification automatically.
         await sendVerificationEmail(user);
 
         return user;
-
     }
-
 
     /* ================================
        EMAIL LOGIN
     ================================= */
 
-    async function loginWithEmail(
-        email,
-        password
-    ) {
+    async function loginWithEmail(email, password) {
 
         await initializeFirebase();
 
@@ -425,16 +404,10 @@
                 password
             );
 
-        const user = result.user;
+        await result.user.reload();
 
-        await user.reload();
-
-        // User remains signed in so they can open
-        // the verification page and resend the email.
         return firebaseAuth.currentUser;
-
     }
-
 
     /* ================================
        GOOGLE LOGIN
@@ -450,9 +423,7 @@
             );
 
         return result.user;
-
     }
-
 
     /* ================================
        GITHUB LOGIN
@@ -468,9 +439,7 @@
             );
 
         return result.user;
-
     }
-
 
     /* ================================
        LOGOUT
@@ -483,9 +452,7 @@
         await firebaseAuth.signOut();
 
         localStorage.removeItem("itachi_logged_in");
-
     }
-
 
     /* ================================
        AUTH STATE
@@ -496,32 +463,51 @@
         await initializeFirebase();
 
         return firebaseAuth.onAuthStateChanged(
-            function (user) {
+            async function (user) {
 
-                if (canAccess(user)) {
+                try {
 
-                    localStorage.setItem(
-                        "itachi_logged_in",
-                        "true"
+                    if (user) {
+                        await user.reload();
+                        user = firebaseAuth.currentUser;
+                    }
+
+                    if (canAccess(user)) {
+
+                        localStorage.setItem(
+                            "itachi_logged_in",
+                            "true"
+                        );
+
+                    } else {
+
+                        localStorage.removeItem(
+                            "itachi_logged_in"
+                        );
+                    }
+
+                    if (typeof callback === "function") {
+                        callback(user);
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "AUTH STATE ERROR:",
+                        error
                     );
-
-                } else {
 
                     localStorage.removeItem(
                         "itachi_logged_in"
                     );
 
+                    if (typeof callback === "function") {
+                        callback(null);
+                    }
                 }
-
-                if (typeof callback === "function") {
-                    callback(user);
-                }
-
             }
         );
-
     }
-
 
     /* ================================
        ERROR MESSAGES
@@ -565,16 +551,23 @@
                 "النطاق غير مصرح به في Firebase.",
 
             "auth/operation-not-allowed":
-                "طريقة تسجيل الدخول غير مفعلة في Firebase."
+                "طريقة تسجيل الدخول غير مفعلة في Firebase.",
+
+            "auth/invalid-api-key":
+                "مفتاح Firebase غير صحيح.",
+
+            "auth/web-storage-unsupported":
+                "المتصفح لا يدعم التخزين المطلوب.",
+
+            "auth/popup-blocked":
+                "المتصفح منع نافذة تسجيل الدخول."
 
         };
 
         return messages[error.code] ||
             error.message ||
             "حدث خطأ غير متوقع.";
-
     }
-
 
     /* ================================
        GLOBAL SOVDIX API
@@ -613,7 +606,6 @@
         getErrorMessage: getErrorMessage
 
     };
-
 
     /* ================================
        START
