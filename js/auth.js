@@ -1,13 +1,15 @@
+
 /*
- * SOVT AUTH
+ * SOVDIX AUTH SYSTEM
  * Firebase Authentication
  * Email + Google + GitHub
+ * Email Verification
+ * Version 2.0.0
  */
 
 (function () {
 
     "use strict";
-
 
     /* ================================
        FIREBASE CONFIG
@@ -15,26 +17,17 @@
 
     const firebaseConfig = {
 
-        apiKey:
-            "AIzaSyALbPr2kBfrDKmtLlAkwq92_jKzegE2k6M",
+        apiKey: "YOUR_NEW_FIREBASE_API_KEY",
 
-        authDomain:
-            "sovt-8e674.firebaseapp.com",
+        authDomain: "sovdix-48ea4.firebaseapp.com",
 
-        projectId:
-            "sovt-8e674",
+        projectId: "sovdix-48ea4",
 
-        storageBucket:
-            "sovt-8e674.firebasestorage.app",
+        storageBucket: "YOUR_NEW_STORAGE_BUCKET",
 
-        messagingSenderId:
-            "153910651650",
+        messagingSenderId: "YOUR_NEW_MESSAGING_SENDER_ID",
 
-        appId:
-            "1:153910651650:web:2f6b365acff4e6de3c301b",
-
-        measurementId:
-            "G-N5TCR9XS24"
+        appId: "YOUR_NEW_FIREBASE_APP_ID"
 
     };
 
@@ -58,61 +51,41 @@
 
         return new Promise(function (resolve, reject) {
 
-            const existing =
-                document.querySelector(
-                    'script[src="' + src + '"]'
-                );
+            const existing = document.querySelector(
+                'script[src="' + src + '"]'
+            );
 
             if (existing) {
 
                 if (existing.dataset.loaded === "true") {
-
                     resolve();
-
                     return;
                 }
 
-                existing.addEventListener(
-                    "load",
-                    resolve,
-                    { once: true }
-                );
+                existing.addEventListener("load", resolve, {
+                    once: true
+                });
 
-                existing.addEventListener(
-                    "error",
-                    reject,
-                    { once: true }
-                );
+                existing.addEventListener("error", reject, {
+                    once: true
+                });
 
                 return;
             }
 
-
-            const script =
-                document.createElement("script");
+            const script = document.createElement("script");
 
             script.src = src;
-
             script.async = true;
 
             script.onload = function () {
-
                 script.dataset.loaded = "true";
-
                 resolve();
-
             };
 
             script.onerror = function () {
-
-                reject(
-                    new Error(
-                        "تعذر تحميل Firebase: " + src
-                    )
-                );
-
+                reject(new Error("تعذر تحميل Firebase SDK"));
             };
-
 
             document.head.appendChild(script);
 
@@ -128,161 +101,92 @@
     async function initializeFirebase() {
 
         if (firebaseReady) {
-
             return {
-
                 app: firebaseApp,
-
                 auth: firebaseAuth
-
             };
-
         }
-
 
         if (firebasePromise) {
-
             return firebasePromise;
-
         }
 
+        firebasePromise = (async function () {
 
-        firebasePromise =
-            (async function () {
+            try {
 
-                try {
-
-                    /*
-                     * Firebase App
-                     */
-
-                    await loadScript(
-                        "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"
+                if (
+                    firebaseConfig.apiKey === "YOUR_NEW_FIREBASE_API_KEY" ||
+                    firebaseConfig.appId === "YOUR_NEW_FIREBASE_APP_ID" ||
+                    firebaseConfig.storageBucket === "YOUR_NEW_STORAGE_BUCKET" ||
+                    firebaseConfig.messagingSenderId === "YOUR_NEW_MESSAGING_SENDER_ID"
+                ) {
+                    throw new Error(
+                        "يجب وضع إعدادات Firebase الحقيقية أولاً."
                     );
-
-
-                    /*
-                     * Firebase Authentication
-                     */
-
-                    await loadScript(
-                        "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"
-                    );
-
-
-                    /*
-                     * Check Firebase
-                     */
-
-                    if (
-                        !window.firebase ||
-                        typeof window.firebase.initializeApp !== "function"
-                    ) {
-
-                        throw new Error(
-                            "Firebase SDK لم يتم تحميله."
-                        );
-
-                    }
-
-
-                    /*
-                     * Initialize App
-                     */
-
-                    if (
-                        window.firebase.apps &&
-                        window.firebase.apps.length > 0
-                    ) {
-
-                        firebaseApp =
-                            window.firebase.apps[0];
-
-                    } else {
-
-                        firebaseApp =
-                            window.firebase.initializeApp(
-                                firebaseConfig
-                            );
-
-                    }
-
-
-                    /*
-                     * Auth
-                     */
-
-                    firebaseAuth =
-                        window.firebase.auth();
-
-
-                    /*
-                     * Providers
-                     */
-
-                    window.SOVTGoogleProvider =
-                        new window.firebase.auth.GoogleAuthProvider();
-
-
-                    window.SOVTGitHubProvider =
-                        new window.firebase.auth.GithubAuthProvider();
-
-
-                    /*
-                     * Persistence
-                     */
-
-                    await firebaseAuth.setPersistence(
-                        window.firebase.auth.Auth.Persistence.LOCAL
-                    );
-
-
-                    firebaseReady = true;
-
-
-                    /*
-                     * Global
-                     */
-
-                    window.firebaseApp =
-                        firebaseApp;
-
-                    window.firebaseAuth =
-                        firebaseAuth;
-
-
-                    console.log(
-                        "SOVT Firebase: READY"
-                    );
-
-
-                    return {
-
-                        app: firebaseApp,
-
-                        auth: firebaseAuth
-
-                    };
-
-
-                } catch (error) {
-
-                    console.error(
-                        "SOVT FIREBASE ERROR:",
-                        error
-                    );
-
-
-                    firebaseReady = false;
-
-                    firebasePromise = null;
-
-                    throw error;
-
                 }
 
-            })();
+                await loadScript(
+                    "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"
+                );
 
+                await loadScript(
+                    "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"
+                );
+
+                if (!window.firebase) {
+                    throw new Error("Firebase SDK غير متاح.");
+                }
+
+                const existingApp = window.firebase.apps.find(
+                    app => app.name === "[DEFAULT]"
+                );
+
+                firebaseApp = existingApp ||
+                    window.firebase.initializeApp(firebaseConfig);
+
+                firebaseAuth = firebaseApp.auth();
+
+                await firebaseAuth.setPersistence(
+                    window.firebase.auth.Auth.Persistence.LOCAL
+                );
+
+                window.SOVTGoogleProvider =
+                    new window.firebase.auth.GoogleAuthProvider();
+
+                window.SOVTGoogleProvider.setCustomParameters({
+                    prompt: "select_account"
+                });
+
+                window.SOVTGitHubProvider =
+                    new window.firebase.auth.GithubAuthProvider();
+
+                window.SOVTGitHubProvider.addScope("user:email");
+
+                window.firebaseApp = firebaseApp;
+                window.firebaseAuth = firebaseAuth;
+
+                firebaseReady = true;
+
+                console.log("SOVDIX AUTH: READY");
+
+                return {
+                    app: firebaseApp,
+                    auth: firebaseAuth
+                };
+
+            } catch (error) {
+
+                firebasePromise = null;
+                firebaseReady = false;
+
+                console.error("FIREBASE ERROR:", error);
+
+                throw error;
+
+            }
+
+        })();
 
         return firebasePromise;
 
@@ -294,8 +198,149 @@
     ================================= */
 
     async function ready() {
-
         return await initializeFirebase();
+    }
+
+
+    /* ================================
+       EMAIL VERIFICATION CHECK
+    ================================= */
+
+    function isEmailVerified(user) {
+
+        if (!user) {
+            return false;
+        }
+
+        const isPasswordAccount =
+            user.providerData.some(function (provider) {
+                return provider.providerId === "password";
+            });
+
+        // Google and GitHub accounts use their provider
+        // authentication status instead of Firebase email verification.
+        if (!isPasswordAccount) {
+            return true;
+        }
+
+        return user.emailVerified === true;
+
+    }
+
+
+    /* ================================
+       ACCESS CHECK
+    ================================= */
+
+    function canAccess(user) {
+
+        if (!user) {
+            return false;
+        }
+
+        return isEmailVerified(user);
+
+    }
+
+
+    /* ================================
+       SEND VERIFICATION EMAIL
+    ================================= */
+
+    async function sendVerificationEmail(user) {
+
+        await initializeFirebase();
+
+        user = user || firebaseAuth.currentUser;
+
+        if (!user) {
+            throw new Error("يجب تسجيل الدخول أولاً.");
+        }
+
+        if (user.emailVerified) {
+            return {
+                success: true,
+                alreadyVerified: true
+            };
+        }
+
+        await user.sendEmailVerification();
+
+        return {
+            success: true,
+            message: "تم إرسال رسالة التحقق بنجاح."
+        };
+
+    }
+
+
+    /* ================================
+       RESEND VERIFICATION EMAIL
+    ================================= */
+
+    async function resendVerificationEmail() {
+
+        await initializeFirebase();
+
+        const user = firebaseAuth.currentUser;
+
+        if (!user) {
+            throw new Error("لا يوجد مستخدم مسجل الدخول.");
+        }
+
+        await user.reload();
+
+        if (user.emailVerified) {
+            return {
+                success: true,
+                alreadyVerified: true
+            };
+        }
+
+        await user.sendEmailVerification();
+
+        return {
+            success: true,
+            message: "تمت إعادة إرسال رسالة التحقق."
+        };
+
+    }
+
+
+    /* ================================
+       REFRESH USER
+    ================================= */
+
+    async function refreshUser() {
+
+        await initializeFirebase();
+
+        const user = firebaseAuth.currentUser;
+
+        if (!user) {
+            return null;
+        }
+
+        await user.reload();
+
+        return firebaseAuth.currentUser;
+
+    }
+
+
+    /* ================================
+       CHECK VERIFICATION
+    ================================= */
+
+    async function checkEmailVerification() {
+
+        const user = await refreshUser();
+
+        if (!user) {
+            return false;
+        }
+
+        return isEmailVerified(user);
 
     }
 
@@ -310,16 +355,17 @@
 
         return new Promise(function (resolve) {
 
-            const unsubscribe =
-                firebaseAuth.onAuthStateChanged(
-                    function (user) {
+            let unsubscribe = function () {};
 
-                        unsubscribe();
+            unsubscribe = firebaseAuth.onAuthStateChanged(
+                function (user) {
 
-                        resolve(user || null);
+                    unsubscribe();
 
-                    }
-                );
+                    resolve(user || null);
+
+                }
+            );
 
         });
 
@@ -338,29 +384,24 @@
 
         await initializeFirebase();
 
-
         const result =
             await firebaseAuth.createUserWithEmailAndPassword(
-                email,
+                email.trim(),
                 password
             );
 
-
-        const user =
-            result.user;
-
+        const user = result.user;
 
         if (user && username) {
 
             await user.updateProfile({
-
-                displayName:
-                    username
-
+                displayName: username.trim()
             });
 
         }
 
+        // Send verification automatically.
+        await sendVerificationEmail(user);
 
         return user;
 
@@ -378,15 +419,19 @@
 
         await initializeFirebase();
 
-
         const result =
             await firebaseAuth.signInWithEmailAndPassword(
-                email,
+                email.trim(),
                 password
             );
 
+        const user = result.user;
 
-        return result.user;
+        await user.reload();
+
+        // User remains signed in so they can open
+        // the verification page and resend the email.
+        return firebaseAuth.currentUser;
 
     }
 
@@ -399,12 +444,10 @@
 
         await initializeFirebase();
 
-
         const result =
             await firebaseAuth.signInWithPopup(
                 window.SOVTGoogleProvider
             );
-
 
         return result.user;
 
@@ -419,12 +462,10 @@
 
         await initializeFirebase();
 
-
         const result =
             await firebaseAuth.signInWithPopup(
                 window.SOVTGitHubProvider
             );
-
 
         return result.user;
 
@@ -439,13 +480,9 @@
 
         await initializeFirebase();
 
-
         await firebaseAuth.signOut();
 
-
-        localStorage.removeItem(
-            "itachi_logged_in"
-        );
+        localStorage.removeItem("itachi_logged_in");
 
     }
 
@@ -454,17 +491,14 @@
        AUTH STATE
     ================================= */
 
-    async function listenAuthState(
-        callback
-    ) {
+    async function listenAuthState(callback) {
 
         await initializeFirebase();
-
 
         return firebaseAuth.onAuthStateChanged(
             function (user) {
 
-                if (user) {
+                if (canAccess(user)) {
 
                     localStorage.setItem(
                         "itachi_logged_in",
@@ -479,13 +513,8 @@
 
                 }
 
-
-                if (
-                    typeof callback === "function"
-                ) {
-
+                if (typeof callback === "function") {
                     callback(user);
-
                 }
 
             }
@@ -495,61 +524,108 @@
 
 
     /* ================================
-       GLOBAL SOVT API
+       ERROR MESSAGES
+    ================================= */
+
+    function getErrorMessage(error) {
+
+        const messages = {
+
+            "auth/email-already-in-use":
+                "هذا البريد الإلكتروني مسجل مسبقاً.",
+
+            "auth/invalid-email":
+                "البريد الإلكتروني غير صحيح.",
+
+            "auth/weak-password":
+                "كلمة المرور ضعيفة.",
+
+            "auth/user-not-found":
+                "الحساب غير موجود.",
+
+            "auth/wrong-password":
+                "كلمة المرور غير صحيحة.",
+
+            "auth/invalid-credential":
+                "بيانات تسجيل الدخول غير صحيحة.",
+
+            "auth/too-many-requests":
+                "محاولات كثيرة. حاول لاحقاً.",
+
+            "auth/popup-closed-by-user":
+                "تم إغلاق نافذة تسجيل الدخول.",
+
+            "auth/account-exists-with-different-credential":
+                "هذا البريد مرتبط بطريقة تسجيل دخول أخرى.",
+
+            "auth/network-request-failed":
+                "تحقق من اتصال الإنترنت.",
+
+            "auth/unauthorized-domain":
+                "النطاق غير مصرح به في Firebase.",
+
+            "auth/operation-not-allowed":
+                "طريقة تسجيل الدخول غير مفعلة في Firebase."
+
+        };
+
+        return messages[error.code] ||
+            error.message ||
+            "حدث خطأ غير متوقع.";
+
+    }
+
+
+    /* ================================
+       GLOBAL SOVDIX API
     ================================= */
 
     window.SOVTFirebase = {
 
-        ready:
+        ready: ready,
 
-            ready,
+        getCurrentUser: getCurrentUser,
 
-        getCurrentUser:
+        registerWithEmail: registerWithEmail,
 
-            getCurrentUser,
+        loginWithEmail: loginWithEmail,
 
-        registerWithEmail:
+        googleLogin: googleLogin,
 
-            registerWithEmail,
+        githubLogin: githubLogin,
 
-        loginWithEmail:
+        logout: logout,
 
-            loginWithEmail,
+        listenAuthState: listenAuthState,
 
-        googleLogin:
+        sendVerificationEmail: sendVerificationEmail,
 
-            googleLogin,
+        resendVerificationEmail: resendVerificationEmail,
 
-        githubLogin:
+        refreshUser: refreshUser,
 
-            githubLogin,
+        checkEmailVerification: checkEmailVerification,
 
-        logout:
+        isEmailVerified: isEmailVerified,
 
-            logout,
+        canAccess: canAccess,
 
-        listenAuthState:
-
-            listenAuthState
+        getErrorMessage: getErrorMessage
 
     };
 
 
-    /*
-     * Start Firebase immediately.
-     * Errors are logged but do not
-     * break the page.
-     */
+    /* ================================
+       START
+    ================================= */
 
-    initializeFirebase()
-        .catch(function (error) {
+    initializeFirebase().catch(function (error) {
 
-            console.error(
-                "SOVT Firebase initialization failed:",
-                error
-            );
+        console.error(
+            "SOVDIX AUTH INITIALIZATION FAILED:",
+            error
+        );
 
-        });
-
+    });
 
 })();
