@@ -9,79 +9,30 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Arial,sans-serif;
-background:radial-gradient(circle at 50% -20%,#650000,#170000 30%,#050505 70%);
-color:#fff;min-height:100vh;overflow-x:hidden
-}
-
-body:before{
-content:"";position:fixed;width:400px;height:400px;
-background:red;filter:blur(160px);opacity:.1;
-top:-180px;left:50%;transform:translateX(-50%);
-pointer-events:none;z-index:-1
-}
-
-header{
-height:72px;display:flex;align-items:center;
-justify-content:space-between;padding:0 22px;
-border-bottom:1px solid #300000;background:#000b;
-backdrop-filter:blur(15px);position:sticky;top:0;z-index:20
-}
-
+body{font-family:Arial,sans-serif;background:radial-gradient(circle at 50% -20%,#650000,#170000 30%,#050505 70%);color:#fff;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;width:400px;height:400px;background:red;filter:blur(160px);opacity:.1;top:-180px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:-1}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #300000;background:#000b;backdrop-filter:blur(15px);position:sticky;top:0;z-index:20}
 .logo{display:flex;align-items:center;gap:10px;font-weight:bold;font-size:21px;letter-spacing:2px}
 .logo img{width:42px;height:42px;object-fit:contain;filter:drop-shadow(0 0 10px #d00000)}
-
-.menu{
-width:43px;height:43px;border:1px solid #620000;
-border-radius:12px;background:#120000;color:#fff;
-font-size:23px;cursor:pointer
-}
-
-.side{
-position:fixed;top:0;right:-290px;width:280px;height:100vh;
-background:#090909;border-left:1px solid #650000;
-z-index:50;padding:25px 18px;transition:.4s;
-box-shadow:-15px 0 50px #f000001c
-}
+.menu{width:43px;height:43px;border:1px solid #620000;border-radius:12px;background:#120000;color:#fff;font-size:23px;cursor:pointer}
+.side{position:fixed;top:0;right:-290px;width:280px;height:100vh;background:#090909;border-left:1px solid #650000;z-index:50;padding:25px 18px;transition:.4s;box-shadow:-15px 0 50px #f000001c}
 .side.open{right:0}
 .side h2{margin-bottom:25px;color:#ff3030}
-.side a{
-display:block;color:#ddd;text-decoration:none;
-padding:14px;margin:7px 0;border-radius:10px;transition:.25s
-}
+.side a{display:block;color:#ddd;text-decoration:none;padding:14px;margin:7px 0;border-radius:10px;transition:.25s}
 .side a:hover{background:#260000;transform:translateX(-5px)}
 .close{float:left;border:0;background:none;color:#fff;font-size:25px;cursor:pointer}
-
 main{width:min(1000px,92%);margin:45px auto}
 .hero{text-align:center;animation:up .7s}
-.hero img{
-width:105px;height:105px;object-fit:contain;
-filter:drop-shadow(0 0 22px #f0000070);animation:float 4s infinite
-}
+.hero img{width:105px;height:105px;object-fit:contain;filter:drop-shadow(0 0 22px #f0000070);animation:float 4s infinite}
 .hero h1{margin-top:15px;font-size:42px;letter-spacing:5px}
 .hero h1 span{color:#ff2020}
 .hero p{margin-top:10px;color:#aaa}
-
-.status{
-margin:30px auto;width:min(700px,100%);padding:18px;
-border:1px solid #360000;background:#140000b3;
-border-radius:18px;display:flex;justify-content:center;
-align-items:center;gap:12px
-}
-
+.status{margin:30px auto;width:min(700px,100%);padding:18px;border:1px solid #360000;background:#140000b3;border-radius:18px;display:flex;justify-content:center;align-items:center;gap:12px}
 .dot{width:12px;height:12px;border-radius:50%;background:#777;flex-shrink:0}
 .dot.online{background:#00ff72;box-shadow:0 0 15px #00ff72;animation:pulse 1.5s infinite}
 .dot.error{background:#ff2020;box-shadow:0 0 15px #ff2020}
-
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:25px}
-
-.card{
-background:linear-gradient(145deg,#1e0000dc,#080808e8);
-border:1px solid #350000;border-radius:18px;
-padding:22px;transition:.3s;animation:up .8s;min-width:0
-}
+.card{background:linear-gradient(145deg,#1e0000dc,#080808e8);border:1px solid #350000;border-radius:18px;padding:22px;transition:.3s;animation:up .8s;min-width:0}
 .card:hover{transform:translateY(-5px);border-color:#850000}
 .card h3{color:#ff3535;margin-bottom:12px}
 .value{color:#eee;word-break:break-word}
@@ -89,184 +40,78 @@ padding:22px;transition:.3s;animation:up .8s;min-width:0
 .owner{color:#ff3030;text-shadow:0 0 12px #ff000050}
 .free{color:#ddd}.go{color:#ff9b30}.pro{color:#ff3030}
 .account-email{font-size:12px;color:#999;margin-top:8px;word-break:break-all}
-
-.section{
-margin-top:25px;background:#090909;border:1px solid #390000;
-border-radius:18px;padding:22px
-}
+.section{margin-top:25px;background:#090909;border:1px solid #390000;border-radius:18px;padding:22px}
 .section h2{margin-bottom:15px}
-
-.key-top{
-display:flex;justify-content:space-between;
-align-items:center;gap:10px;flex-wrap:wrap
-}
-
+.key-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .limit{color:#999;font-size:14px;margin-top:5px}
 .account-message{color:#999;font-size:13px;line-height:1.7;margin-top:10px}
-
-button{
-border:1px solid #570000;background:#160000;
-color:#fff;padding:13px;border-radius:10px;cursor:pointer;
-font-family:Arial,sans-serif
-}
+button{border:1px solid #570000;background:#160000;color:#fff;padding:13px;border-radius:10px;cursor:pointer;font-family:Arial,sans-serif}
 button:disabled{opacity:.45;cursor:not-allowed}
-
-.primary{
-background:linear-gradient(135deg,#c00000,#650000);
-border:1px solid #a00000;color:#fff;padding:13px 18px;
-border-radius:11px;cursor:pointer;font-weight:bold
-}
+.primary{background:linear-gradient(135deg,#c00000,#650000);border:1px solid #a00000;color:#fff;padding:13px 18px;border-radius:11px;cursor:pointer;font-weight:bold}
 .primary:hover{filter:brightness(1.2);transform:translateY(-2px)}
 .secondary{background:#151515;border:1px solid #400000;color:#fff;padding:11px 15px;border-radius:10px}
 .secondary:hover{background:#260000}
-
 .keys{margin-top:18px;display:grid;gap:12px}
-.empty{
-padding:25px;text-align:center;color:#777;
-border:1px dashed #350000;border-radius:12px;line-height:1.7
-}
+.empty{padding:25px;text-align:center;color:#777;border:1px dashed #350000;border-radius:12px;line-height:1.7}
 .key{background:#050505;border:1px solid #300000;border-radius:13px;padding:15px;min-width:0}
 .key b{color:#ff4242}
 .key small{display:block;color:#888;margin-top:7px;word-break:break-word}
 .key-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .key-actions button{padding:8px 10px;font-size:13px}
 .key-actions .danger{background:#220000;border-color:#650000}
-
-textarea{
-width:100%;min-height:120px;resize:vertical;
-background:#050505;color:#fff;border:1px solid #3b0000;
-border-radius:12px;padding:14px;outline:none;
-font-size:16px;line-height:1.7;font-family:Arial,sans-serif
-}
+textarea{width:100%;min-height:120px;resize:vertical;background:#050505;color:#fff;border:1px solid #3b0000;border-radius:12px;padding:14px;outline:none;font-size:16px;line-height:1.7;font-family:Arial,sans-serif}
 textarea:focus{border-color:#b00000}
-
 .row{display:flex;gap:10px;margin-top:12px}
-select{
-flex:1;outline:none;border:1px solid #570000;
-background:#160000;color:#fff;padding:13px;border-radius:10px;
-min-width:0
-}
-
-.translate{
-background:linear-gradient(135deg,#b00000,#610000);
-cursor:pointer;font-weight:bold
-}
+select{flex:1;outline:none;border:1px solid #570000;background:#160000;color:#fff;padding:13px;border-radius:10px;min-width:0}
+.translate{background:linear-gradient(135deg,#b00000,#610000);cursor:pointer;font-weight:bold}
 .translate:disabled{opacity:.5;cursor:not-allowed}
-
-.result{
-margin-top:15px;padding:16px;min-height:55px;
-background:#030303;border:1px solid #280000;
-border-radius:12px;color:#ddd;white-space:pre-wrap;
-direction:auto;line-height:1.8;overflow-wrap:anywhere
-}
+.result{margin-top:15px;padding:16px;min-height:55px;background:#030303;border:1px solid #280000;border-radius:12px;color:#ddd;white-space:pre-wrap;direction:auto;line-height:1.8;overflow-wrap:anywhere}
 .result.success{border-color:#164d32}
 .result.error{border-color:#650000;color:#ff7777}
-
-.progress{
-margin-top:12px;height:8px;background:#181818;
-border-radius:99px;overflow:hidden
-}
-.progress span{
-display:block;height:100%;width:0;
-background:linear-gradient(90deg,#900,#f22);transition:.4s
-}
-
-.endpoint,.code{
-direction:ltr;text-align:left;font-family:monospace;
-background:#030303;border:1px solid #280000;
-padding:13px;border-radius:10px;overflow:auto;white-space:pre-wrap;
-overflow-wrap:anywhere
-}
+.progress{margin-top:12px;height:8px;background:#181818;border-radius:99px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#900,#f22);transition:.4s}
+.endpoint,.code{direction:ltr;text-align:left;font-family:monospace;background:#030303;border:1px solid #280000;padding:13px;border-radius:10px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 .endpoint{color:#ff5757}
-
-.info{
-margin-top:12px;padding:13px;background:#050505;
-border:1px solid #250000;border-radius:10px;
-color:#999;line-height:1.7
-}
-
-.plans{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:12px;margin-top:15px
-}
-.plan-card{
-background:#050505;border:1px solid #380000;
-border-radius:13px;padding:17px;text-align:center
-}
+.info{margin-top:12px;padding:13px;background:#050505;border:1px solid #250000;border-radius:10px;color:#999;line-height:1.7}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}
+.plan-card{background:#050505;border:1px solid #380000;border-radius:13px;padding:17px;text-align:center}
 .plan-card h3{color:#ff4141;margin-bottom:10px}
 .plan-price{font-size:23px;font-weight:bold;margin:12px 0}
 .plan-card p{color:#999;font-size:13px;line-height:1.8}
 .plan-card button{width:100%;margin-top:12px}
-
-.modal-bg{
-position:fixed;inset:0;background:#000b;backdrop-filter:blur(8px);
-display:none;align-items:center;justify-content:center;
-padding:20px;z-index:100
-}
+.modal-bg{position:fixed;inset:0;background:#000b;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .modal-bg.show{display:flex;animation:fade .25s}
-.modal{
-width:min(500px,100%);max-height:90vh;overflow:auto;
-background:#0b0b0b;border:1px solid #690000;
-border-radius:20px;padding:24px;
-box-shadow:0 20px 80px #000;animation:modal .3s
-}
+.modal{width:min(500px,100%);max-height:90vh;overflow:auto;background:#0b0b0b;border:1px solid #690000;border-radius:20px;padding:24px;box-shadow:0 20px 80px #000;animation:modal .3s}
 .modal h2{color:#ff3030;margin-bottom:8px}
 .modal p{color:#999;font-size:14px;margin-bottom:18px;line-height:1.7}
 .field{margin-top:13px}
 .field label{display:block;color:#ccc;margin-bottom:7px}
-.field input,.field select{
-width:100%;padding:13px;background:#050505;color:#fff;
-border:1px solid #350000;border-radius:10px;outline:none
-}
+.field input,.field select{width:100%;padding:13px;background:#050505;color:#fff;border:1px solid #350000;border-radius:10px;outline:none}
 .field input:focus{border-color:#a00000}
 .actions{display:flex;gap:10px;margin-top:20px}
 .actions button{flex:1;cursor:pointer}
 .cancel{background:#151515}
 .create{background:#9d0000}
-
-.secret{
-margin-top:18px;padding:15px;background:#030303;
-border:1px solid #550000;border-radius:12px;display:none
-}
-.secret code{
-display:block;direction:ltr;word-break:break-all;
-color:#ff5555;margin:10px 0
-}
+.secret{margin-top:18px;padding:15px;background:#030303;border:1px solid #550000;border-radius:12px;display:none}
+.secret code{display:block;direction:ltr;word-break:break-all;color:#ff5555;margin:10px 0}
 .copy{width:100%;cursor:pointer}
-
-.toast{
-position:fixed;bottom:20px;left:50%;
-transform:translateX(-50%) translateY(20px);
-background:#120000;border:1px solid #700000;color:#fff;
-padding:13px 18px;border-radius:12px;opacity:0;
-pointer-events:none;transition:.3s;z-index:300;
-max-width:90%;text-align:center
-}
+.saved{width:100%;margin-top:9px;background:#15351f;border-color:#246b39}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#120000;border:1px solid #700000;color:#fff;padding:13px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:300;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 footer{text-align:center;color:#666;padding:35px 10px}
-
 @keyframes up{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
 @keyframes float{50%{transform:translateY(-8px)}}
 @keyframes pulse{50%{opacity:.4}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes modal{from{opacity:0;transform:scale(.92) translateY(15px)}to{opacity:1;transform:none}}
-
-@media(max-width:700px){
-.grid{grid-template-columns:1fr}
-.row{flex-direction:column}
-.plans{grid-template-columns:1fr}
-.hero h1{font-size:32px}
-.key-actions button{flex:1}
-}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.row{flex-direction:column}.plans{grid-template-columns:1fr}.hero h1{font-size:32px}.key-actions button{flex:1}}
 </style>
 </head>
 
 <body>
-
 <header>
   <div class="logo">
-    <img src="images/sovdix_logo.png" alt="SOVT">
+    <img src="images/itachi_logo.png" alt="SOVT">
     <span>SOVT</span>
   </div>
   <button class="menu" type="button" onclick="openMenu()">☰</button>
@@ -284,9 +129,8 @@ footer{text-align:center;color:#666;padding:35px 10px}
 </nav>
 
 <main>
-
 <section class="hero">
-  <img src="images/sovdix_logo.png" alt="SOVT Logo">
+  <img src="images/itachi_logo.png" alt="SOVT Logo">
   <h1>SOVT <span>API</span></h1>
   <p>World Translation API — powered by SOVDIX</p>
 </section>
@@ -297,121 +141,64 @@ footer{text-align:center;color:#666;padding:35px 10px}
 </div>
 
 <section class="grid">
-
-  <div class="card">
-    <h3>API Version</h3>
-    <div class="value" id="version">...</div>
-  </div>
-
-  <div class="card">
-    <h3>API Status</h3>
-    <div class="value" id="apiStatus">...</div>
-  </div>
-
-  <div class="card">
-    <h3>Provider</h3>
-    <div class="value" id="provider">...</div>
-  </div>
-
-  <div class="card">
-    <h3>Languages</h3>
-    <div class="value" id="languages">...</div>
-  </div>
-
+  <div class="card"><h3>API Version</h3><div class="value" id="version">...</div></div>
+  <div class="card"><h3>API Status</h3><div class="value" id="apiStatus">...</div></div>
+  <div class="card"><h3>Provider</h3><div class="value" id="provider">...</div></div>
+  <div class="card"><h3>Languages</h3><div class="value" id="languages">...</div></div>
   <div class="card">
     <h3>الحساب</h3>
     <div class="value plan" id="accountPlan">جاري التحقق...</div>
     <div class="account-email" id="accountEmail"></div>
     <div class="account-message" id="authMessage"></div>
   </div>
-
   <div class="card">
     <h3>الاستخدام الشهري</h3>
     <div class="value" id="usageText">...</div>
-    <div class="progress">
-      <span id="usageBar"></span>
-    </div>
+    <div class="progress"><span id="usageBar"></span></div>
   </div>
-
 </section>
 
 <section class="section">
   <h2>💳 خطط SOVT</h2>
-  <div class="info">
-    الخطط والحصص المعروضة تأتي من SOVT API.
-    الدفع الإلكتروني غير مفعّل حاليًا.
-  </div>
-  <div class="plans" id="plans">
-    <div class="empty">جاري تحميل الخطط...</div>
-  </div>
+  <div class="info">الخطط والحصص المعروضة تأتي من SOVT API. الدفع الإلكتروني غير مفعّل حاليًا.</div>
+  <div class="plans" id="plans"><div class="empty">جاري تحميل الخطط...</div></div>
 </section>
 
 <section class="section">
-
   <div class="key-top">
     <div>
       <h2>🔐 API Keys</h2>
       <div class="limit" id="keyLimit">جاري تحميل حد المفاتيح...</div>
       <div class="limit">المفاتيح النشطة: <span id="keyCount">0</span></div>
     </div>
-
     <div>
       <button class="secondary" type="button" onclick="refreshAll()">↻ تحديث</button>
       <button class="primary" id="openKeyButton" type="button" onclick="openKeyModal()" disabled>+ إنشاء API Key</button>
     </div>
   </div>
-
-  <div class="keys" id="keys">
-    <div class="empty">جاري تحميل API Keys...</div>
-  </div>
-
+  <div class="keys" id="keys"><div class="empty">جاري تحميل API Keys...</div></div>
 </section>
 
 <section class="section">
-
   <h2>⚡ اختبار الترجمة</h2>
-
   <div class="info">
     تتم الترجمة من خلال SOVT API مباشرة.
     يقرأ المحرك القواميس من مجلد GitHub Data تلقائيًا.
     لا تحتاج إلى تحميل القواميس داخل هذه الصفحة.
   </div>
-
-  <textarea
-    id="text"
-    placeholder="اكتب النص الذي تريد ترجمته..."
-  ></textarea>
-
+  <textarea id="text" placeholder="اكتب النص الذي تريد ترجمته..."></textarea>
   <div class="row">
-
-    <select id="source">
-      <option value="auto">Auto Detect</option>
-    </select>
-
-    <select id="target">
-      <option value="">جاري تحميل اللغات...</option>
-    </select>
-
-    <button class="translate" id="translateButton" type="button" onclick="translateText()">
-      ترجمة ⚡
-    </button>
-
+    <select id="source"><option value="auto">Auto Detect</option></select>
+    <select id="target"><option value="">جاري تحميل اللغات...</option></select>
+    <button class="translate" id="translateButton" type="button" onclick="translateText()">ترجمة ⚡</button>
   </div>
-
   <div class="result" id="result">النتيجة ستظهر هنا...</div>
-
 </section>
 
 <section class="section">
-
   <h2>🌐 API Endpoint</h2>
-
-  <div class="endpoint">
-https://sovt-api.sovdix.workers.dev/api/translate
-  </div>
-
+  <div class="endpoint">https://sovt-api.sovdix.workers.dev/api/translate</div>
   <br>
-
   <div class="code">POST /api/translate
 
 Headers:
@@ -424,48 +211,29 @@ Body:
   "source": "en",
   "target": "ar"
 }</div>
-
 </section>
 
 <section class="section">
-
   <h2>📚 GitHub Dictionary Source</h2>
-
-  <div class="value">
-    sovdix-max/SOVT/Data
-  </div>
-
-  <div class="info" id="dictionaryStatus">
-    جاري فحص ملفات القواميس...
-  </div>
-
+  <div class="value">sovdix-max/SOVT/Data</div>
+  <div class="info" id="dictionaryStatus">جاري فحص ملفات القواميس...</div>
 </section>
-
 </main>
 
-<footer>
-SOVT API • Create. Build. Beyond.
-</footer>
+<footer>SOVT API • Create. Build. Beyond.</footer>
 
 <div class="modal-bg" id="modal">
   <div class="modal">
-
     <h2>إنشاء API Key 🔐</h2>
-
-    <p>
-      سيتم إنشاء مفتاح جديد وربطه بحسابك وحفظ بصمته داخل قاعدة بيانات SOVT.
-    </p>
-
+    <p>سيتم إنشاء مفتاح جديد وربطه بحسابك وحفظ بصمته داخل قاعدة بيانات SOVT.</p>
     <div class="field">
       <label for="keyName">اسم المفتاح</label>
       <input id="keyName" placeholder="مثال: My Website" maxlength="80">
     </div>
-
     <div class="field">
       <label for="keyDescription">الوصف</label>
       <input id="keyDescription" placeholder="مثال: مفتاح موقعي" maxlength="200">
     </div>
-
     <div class="field">
       <label for="keyType">نوع الاستخدام</label>
       <select id="keyType">
@@ -475,939 +243,540 @@ SOVT API • Create. Build. Beyond.
         <option value="other">Other</option>
       </select>
     </div>
-
     <div class="actions">
       <button class="cancel" type="button" onclick="closeKeyModal()">إلغاء</button>
       <button class="create" id="createKeyButton" type="button" onclick="createKey()">إنشاء المفتاح</button>
     </div>
-
     <div class="secret" id="secret">
       <strong>🔑 API Key — احفظه الآن</strong>
       <code id="secretValue"></code>
-      <div class="info">
-        لن تتمكن من رؤية المفتاح كاملًا مرة أخرى بعد إغلاق هذه النافذة.
-      </div>
-      <button class="copy" type="button" onclick="copyKey()">📋 نسخ المفتاح</button>
+      <div class="info">لن تتمكن من رؤية المفتاح كاملًا مرة أخرى بعد إغلاق هذه النافذة.</div>
+      <button class="copy" id="copyButton" type="button" onclick="copyKey()">📋 نسخ المفتاح</button>
+      <button class="saved" id="savedButton" type="button" onclick="confirmKeySaved()" disabled>تم الحفظ، إغلاق</button>
     </div>
-
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script src="js/auth.js"></script>
-
 <script>
 "use strict";
-
-/* =====================================
-   SOVT API CONFIGURATION
-===================================== */
 
 const API = "https://sovt-api.sovdix.workers.dev";
 const $ = id => document.getElementById(id);
 
 let currentUser = null;
-let firebaseAuth = null;
-let authUnsubscribe = null;
 let apiKeys = [];
 let usageData = null;
 let plansData = {};
 let languagePairs = [];
 let availableLanguages = [];
-let firstAuthState = true;
+let secretCopied = false;
+let creatingKey = false;
 
 const LANGUAGE_NAMES = {
-  ar:"العربية", en:"English", zh:"中文", ja:"日本語",
-  ko:"한국어", fr:"Français", de:"Deutsch", es:"Español",
-  ru:"Русский", hi:"हिन्दी", pt:"Português", it:"Italiano",
-  tr:"Türkçe", nl:"Nederlands", id:"Bahasa Indonesia",
-  vi:"Tiếng Việt", th:"ไทย", el:"Ελληνικά", he:"עברית",
-  uk:"Українська", pl:"Polski", fa:"فارسی", ur:"اردو",
-  bn:"বাংলা", sv:"Svenska", no:"Norsk", da:"Dansk",
-  fi:"Suomi", cs:"Čeština", ro:"Română", hu:"Magyar"
+  ar:"العربية",en:"English",zh:"中文",ja:"日本語",
+  ko:"한국어",fr:"Français",de:"Deutsch",es:"Español",
+  ru:"Русский",hi:"हिन्दी",pt:"Português",it:"Italiano",
+  tr:"Türkçe",nl:"Nederlands",id:"Bahasa Indonesia",
+  vi:"Tiếng Việt",th:"ไทย",el:"Ελληνικά",he:"עברית",
+  uk:"Українська",pl:"Polski",fa:"فارسی",ur:"اردو",
+  bn:"বাংলা",sv:"Svenska",no:"Norsk",da:"Dansk",
+  fi:"Suomi",cs:"Čeština",ro:"Română",hu:"Magyar"
 };
 
-/* =====================================
-   BASIC UI
-===================================== */
+function openMenu(){ $("side").classList.add("open"); }
+function closeMenu(){ $("side").classList.remove("open"); }
 
-function openMenu() {
-  $("side").classList.add("open");
-}
-
-function closeMenu() {
-  $("side").classList.remove("open");
-}
-
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = String(message);
+function showToast(message){
+  const toast=$("toast");
+  toast.textContent=String(message);
   toast.classList.add("show");
-
   clearTimeout(window.__sovtToastTimer);
-
-  window.__sovtToastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2800);
+  window.__sovtToastTimer=setTimeout(()=>toast.classList.remove("show"),2800);
 }
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   })[char]);
 }
 
-function formatNumber(value) {
-  return Number(value || 0).toLocaleString();
+function formatNumber(value){return Number(value||0).toLocaleString();}
+
+function canAccessAPI(){
+  return Boolean(currentUser&&window.SOVTFirebase&&window.SOVTFirebase.canAccess(currentUser));
 }
 
-function canAccessAPI() {
-  return Boolean(
-    currentUser &&
-    window.SOVTFirebase &&
-    window.SOVTFirebase.canAccess(currentUser)
-  );
+function isKeyActive(key){
+  if(typeof key.active==="boolean")return key.active;
+  if(key.active!==undefined)return Number(key.active)===1;
+  return String(key.status||"").toLowerCase()==="active";
 }
 
-/* =====================================
-   FIREBASE AUTHENTICATION
-===================================== */
+function getKeyName(key){return key.name||key.key_name||"API Key";}
+function getKeyType(key){return key.type||key.key_type||"other";}
 
-async function initializeAuth() {
-  const authAPI = window.SOVTFirebase;
+async function initializeAuth(){
+  const authAPI=window.SOVTFirebase;
+  if(!authAPI||typeof authAPI.ready!=="function")throw new Error("ملف js/auth.js غير جاهز أو لم يتم تحميله.");
 
-  if (!authAPI || typeof authAPI.ready !== "function") {
-    throw new Error("ملف js/auth.js غير جاهز أو لم يتم تحميله.");
-  }
+  const services=await authAPI.ready();
+  if(!services.auth)throw new Error("Firebase Auth غير متاح.");
 
-  const services = await authAPI.ready();
-  firebaseAuth = services.auth;
-
-  if (!firebaseAuth) {
-    throw new Error("Firebase Auth غير متاح.");
-  }
-
-  const firstState = new Promise((resolve, reject) => {
-    let resolved = false;
-
-    authAPI.listenAuthState(async user => {
-      currentUser = user || null;
-
-      try {
-        await handleAuthState(currentUser);
-      } catch (error) {
-        console.error("SOVT account state:", error);
-        showAccountError(error);
-      }
-
-      if (!resolved) {
-        resolved = true;
-        resolve();
-      }
-    }).then(unsubscribe => {
-      authUnsubscribe = unsubscribe;
-    }).catch(error => {
-      if (!resolved) {
-        resolved = true;
-        reject(error);
-      }
-    });
+  await new Promise((resolve,reject)=>{
+    let resolved=false;
+    authAPI.listenAuthState(async user=>{
+      currentUser=user||null;
+      try{await handleAuthState(currentUser);}
+      catch(error){console.error("Account state:",error);showAccountError(error);}
+      if(!resolved){resolved=true;resolve();}
+    }).then(unsubscribe=>{window.__sovtAuthUnsubscribe=unsubscribe;})
+      .catch(error=>{if(!resolved){resolved=true;reject(error);}});
   });
-
-  await firstState;
 }
 
-async function handleAuthState(user) {
-  currentUser = user || null;
-
-  if (!currentUser) {
-    showLoggedOut();
-    return;
-  }
-
-  if (!window.SOVTFirebase.canAccess(currentUser)) {
-    showUnverifiedUser();
-    return;
-  }
-
-  $("accountEmail").textContent = currentUser.email || "";
-  $("authMessage").textContent = "تم التحقق من البريد الإلكتروني عبر Firebase.";
-
+async function handleAuthState(user){
+  currentUser=user||null;
+  if(!currentUser){showLoggedOut();return;}
+  if(!window.SOVTFirebase.canAccess(currentUser)){showUnverifiedUser();return;}
+  $("accountEmail").textContent=currentUser.email||"";
+  $("authMessage").textContent="تم التحقق من البريد الإلكتروني عبر Firebase.";
   await refreshAccountData();
 }
 
-function showLoggedOut() {
-  usageData = null;
-  apiKeys = [];
-
-  $("accountPlan").innerHTML =
-    '<span class="free">غير مسجل الدخول</span>';
-
-  $("accountEmail").textContent = "";
-
-  $("authMessage").innerHTML =
-    '<a href="login.html" style="color:#ff4444">تسجيل الدخول</a> للوصول إلى حساب API.';
-
-  $("usageText").textContent = "سجل الدخول لعرض استخدامك.";
-  $("usageBar").style.width = "0%";
-  $("keyCount").textContent = "0";
-  $("keyLimit").textContent = "سجل الدخول لإدارة مفاتيح API.";
-  $("openKeyButton").disabled = true;
-
-  $("keys").innerHTML =
-    '<div class="empty">🔐 سجل الدخول أولًا لإدارة API Keys.</div>';
+function showLoggedOut(){
+  usageData=null;apiKeys=[];
+  $("accountPlan").innerHTML='<span class="free">غير مسجل الدخول</span>';
+  $("accountEmail").textContent="";
+  $("authMessage").innerHTML='<a href="login.html" style="color:#ff4444">تسجيل الدخول</a> للوصول إلى حساب API.';
+  $("usageText").textContent="سجل الدخول لعرض استخدامك.";
+  $("usageBar").style.width="0%";
+  $("keyCount").textContent="0";
+  $("keyLimit").textContent="سجل الدخول لإدارة مفاتيح API.";
+  $("openKeyButton").disabled=true;
+  $("keys").innerHTML='<div class="empty">🔐 سجل الدخول أولًا لإدارة API Keys.</div>';
 }
 
-function showUnverifiedUser() {
-  usageData = null;
-  apiKeys = [];
-
-  $("accountPlan").innerHTML =
-    '<span class="go">تأكيد البريد الإلكتروني مطلوب</span>';
-
-  $("accountEmail").textContent = currentUser?.email || "";
-
-  $("authMessage").innerHTML =
-    '<button type="button" onclick="resendVerification()">إعادة إرسال رسالة التحقق</button>';
-
-  $("usageText").textContent = "أكد بريدك الإلكتروني للوصول إلى API.";
-  $("usageBar").style.width = "0%";
-  $("keyCount").textContent = "0";
-  $("keyLimit").textContent = "تأكيد البريد مطلوب.";
-  $("openKeyButton").disabled = true;
-
-  $("keys").innerHTML =
-    '<div class="empty">يجب تأكيد البريد الإلكتروني أولًا.</div>';
+function showUnverifiedUser(){
+  usageData=null;apiKeys=[];
+  $("accountPlan").innerHTML='<span class="go">تأكيد البريد الإلكتروني مطلوب</span>';
+  $("accountEmail").textContent=currentUser?.email||"";
+  $("authMessage").innerHTML='<button type="button" onclick="resendVerification()">إعادة إرسال رسالة التحقق</button>';
+  $("usageText").textContent="أكد بريدك الإلكتروني للوصول إلى API.";
+  $("usageBar").style.width="0%";
+  $("keyCount").textContent="0";
+  $("keyLimit").textContent="تأكيد البريد مطلوب.";
+  $("openKeyButton").disabled=true;
+  $("keys").innerHTML='<div class="empty">يجب تأكيد البريد الإلكتروني أولًا.</div>';
 }
 
-function showAccountError(error) {
-  $("accountPlan").innerHTML =
-    '<span class="go">تعذر تحميل بيانات الحساب</span>';
-
-  $("authMessage").textContent =
-    error?.message || "حدث خطأ أثناء تحميل الحساب.";
-
-  $("usageText").textContent = "تعذر جلب بيانات الاستخدام.";
-  $("openKeyButton").disabled = true;
+function showAccountError(error){
+  $("accountPlan").innerHTML='<span class="go">تعذر تحميل بيانات الحساب</span>';
+  $("authMessage").textContent=error?.message||"حدث خطأ أثناء تحميل الحساب.";
+  $("usageText").textContent="تعذر جلب بيانات الاستخدام.";
+  $("openKeyButton").disabled=true;
 }
 
-async function resendVerification() {
-  try {
-    const result =
-      await window.SOVTFirebase.resendVerificationEmail();
-
-    showToast(
-      result.alreadyVerified
-        ? "البريد الإلكتروني مؤكد بالفعل."
-        : "تم إرسال رسالة التحقق."
-    );
-  } catch (error) {
-    showToast(window.SOVTFirebase.getErrorMessage(error));
-  }
+async function resendVerification(){
+  try{
+    const result=await window.SOVTFirebase.resendVerificationEmail();
+    showToast(result.alreadyVerified?"البريد الإلكتروني مؤكد بالفعل.":"تم إرسال رسالة التحقق.");
+  }catch(error){showToast(window.SOVTFirebase.getErrorMessage(error));}
 }
 
-/* =====================================
-   FIREBASE TOKEN
-===================================== */
-
-async function getFirebaseToken() {
-  if (!canAccessAPI()) {
-    throw new Error("سجل الدخول بحساب موثّق أولًا.");
-  }
-
+async function getFirebaseToken(){
+  if(!canAccessAPI())throw new Error("سجل الدخول بحساب موثّق أولًا.");
   return await window.SOVTFirebase.getIdToken();
 }
 
-/* =====================================
-   API REQUEST
-===================================== */
+async function apiFetch(path,options={},protectedRequest=false){
+  const headers=new Headers(options.headers||{});
+  headers.set("Accept","application/json");
+  if(options.body&&!headers.has("Content-Type"))headers.set("Content-Type","application/json");
 
-async function apiFetch(path, options = {}, protectedRequest = false) {
-  const headers = new Headers(options.headers || {});
-
-  headers.set("Accept", "application/json");
-
-  if (options.body && !headers.has("Content-Type")) {
-    headers.set("Content-Type", "application/json");
-  }
-
-  if (protectedRequest) {
-    const token = await getFirebaseToken();
-    headers.set("Authorization", "Bearer " + token);
+  if(protectedRequest){
+    const token=await getFirebaseToken();
+    headers.set("Authorization","Bearer "+token);
   }
 
   let response;
-
-  try {
-    response = await fetch(API + path, {
-      ...options,
-      headers
-    });
-  } catch (error) {
-    throw new Error("تعذر الاتصال بخادم SOVT API.");
-  }
+  try{response=await fetch(API+path,{...options,headers});}
+  catch(error){throw new Error("تعذر الاتصال بخادم SOVT API.");}
 
   let data;
+  try{data=await response.json();}catch{data={};}
 
-  try {
-    data = await response.json();
-  } catch {
-    data = {};
+  if(!response.ok){
+    const error=new Error(data.message||data.error||("API Error "+response.status));
+    error.status=response.status;error.data=data;throw error;
   }
-
-  if (!response.ok) {
-    const error = new Error(
-      data.message ||
-      data.error ||
-      ("API Error " + response.status)
-    );
-
-    error.status = response.status;
-    error.data = data;
-
-    throw error;
-  }
-
   return data;
 }
 
-function describeAPIError(error) {
-  if (error.status >= 500) {
-    return "خطأ من خادم SOVT API (" + error.status + "). الصفحة متصلة، لكن الـWorker تعثر أثناء تنفيذ الطلب.";
-  }
-
-  if (error.status === 401) {
-    return "تعذر التحقق من الحساب. سجّل الدخول مجددًا وتأكد من توثيق بريدك.";
-  }
-
-  if (error.status === 429) {
-    return "وصل الحساب إلى حد الاستخدام المسموح.";
-  }
-
-  return error.message || "حدث خطأ غير معروف.";
+function describeAPIError(error){
+  if(error.status>=500)return "خطأ من خادم SOVT API ("+error.status+"). راجع سجلات Worker.";
+  if(error.status===401)return "تعذر التحقق من الحساب. سجّل الدخول مجددًا.";
+  if(error.status===403)return "ليس لديك إذن لتنفيذ هذا الطلب.";
+  if(error.status===429)return "وصل الحساب إلى حد الاستخدام المسموح.";
+  return error.message||"حدث خطأ غير معروف.";
 }
 
-/* =====================================
-   API STATUS
-===================================== */
-
-async function loadAPI() {
-  try {
-    const data = await apiFetch("/api/status");
-
-    $("dot").className = "dot online";
-    $("statusText").textContent = "SOVT API متصل ويعمل";
-
-    $("version").textContent = data.version || "Unknown";
-    $("apiStatus").textContent = data.status || "online";
-    $("provider").textContent = data.provider || "SOVT";
-
-    $("dictionaryStatus").textContent =
-      "✓ القواميس المكتشفة: " +
-      formatNumber(data.dictionaries) +
-      " • اللغات: " +
-      formatNumber(data.languages) +
-      " • أزواج الترجمة: " +
-      formatNumber(data.pairs);
-
-  } catch (error) {
-    $("dot").className = "dot error";
-    $("statusText").textContent = "تعذر الاتصال بـ SOVT API";
-    $("dictionaryStatus").textContent = error.message;
-    console.error("API status:", error);
+async function loadAPI(){
+  try{
+    const data=await apiFetch("/api/status");
+    $("dot").className="dot online";
+    $("statusText").textContent="SOVT API متصل ويعمل";
+    $("version").textContent=data.version||"Unknown";
+    $("apiStatus").textContent=data.status||"online";
+    $("provider").textContent=data.provider||"SOVT";
+    $("dictionaryStatus").textContent="✓ القواميس المكتشفة: "+formatNumber(data.dictionaries)+" • اللغات: "+formatNumber(data.languages)+" • أزواج الترجمة: "+formatNumber(data.pairs);
+  }catch(error){
+    $("dot").className="dot error";
+    $("statusText").textContent="تعذر الاتصال بـ SOVT API";
+    $("dictionaryStatus").textContent=error.message;
+    console.error("API status:",error);
   }
 }
 
-/* =====================================
-   DYNAMIC LANGUAGES
-===================================== */
+async function loadLanguages(){
+  try{
+    const data=await apiFetch("/api/languages");
+    languagePairs=Array.isArray(data.pairs)?data.pairs:[];
+    availableLanguages=Array.isArray(data.languages)?data.languages:[];
+    $("languages").textContent=availableLanguages.length+" لغة متاحة";
 
-async function loadLanguages() {
-  try {
-    const data = await apiFetch("/api/languages");
+    const sourceSelect=$("source");
+    const oldSource=sourceSelect.value||"auto";
+    const oldTarget=$("target").value||"ar";
+    sourceSelect.innerHTML='<option value="auto">Auto Detect</option>';
 
-    languagePairs = Array.isArray(data.pairs) ? data.pairs : [];
-    availableLanguages = Array.isArray(data.languages) ? data.languages : [];
-
-    $("languages").textContent =
-      availableLanguages.length + " لغة متاحة";
-
-    const sourceSelect = $("source");
-    const oldSource = sourceSelect.value || "auto";
-    const oldTarget = $("target").value || "ar";
-
-    sourceSelect.innerHTML =
-      '<option value="auto">Auto Detect</option>';
-
-    availableLanguages.forEach(code => {
-      const option = document.createElement("option");
-      option.value = code;
-      option.textContent = LANGUAGE_NAMES[code] || code.toUpperCase();
+    availableLanguages.forEach(code=>{
+      const option=document.createElement("option");
+      option.value=code;
+      option.textContent=LANGUAGE_NAMES[code]||code.toUpperCase();
       sourceSelect.appendChild(option);
     });
 
-    sourceSelect.value =
-      availableLanguages.includes(oldSource) ? oldSource : "auto";
-
+    sourceSelect.value=availableLanguages.includes(oldSource)?oldSource:"auto";
     updateTargetLanguages(oldTarget);
-
-  } catch (error) {
-    $("languages").textContent = "تعذر تحميل اللغات";
-    $("target").innerHTML = '<option value="">تعذر تحميل اللغات</option>';
-    console.error("Languages:", error);
+  }catch(error){
+    $("languages").textContent="تعذر تحميل اللغات";
+    $("target").innerHTML='<option value="">تعذر تحميل اللغات</option>';
+    console.error("Languages:",error);
   }
 }
 
-function updateTargetLanguages(preferredTarget = "") {
-  const source = $("source").value;
-  const targets = new Set();
+function updateTargetLanguages(preferredTarget=""){
+  const source=$("source").value;
+  const targets=new Set();
 
-  if (source === "auto") {
-    availableLanguages.forEach(code => targets.add(code));
-  } else {
-    languagePairs.forEach(pair => {
-      if (pair.source === source) targets.add(pair.target);
-      if (pair.target === source) targets.add(pair.source);
-    });
-  }
+  if(source==="auto")availableLanguages.forEach(code=>targets.add(code));
+  else languagePairs.forEach(pair=>{
+    if(pair.source===source)targets.add(pair.target);
+    if(pair.target===source)targets.add(pair.source);
+  });
 
-  const targetSelect = $("target");
-  targetSelect.innerHTML = "";
+  const targetSelect=$("target");
+  targetSelect.innerHTML="";
 
-  [...targets].sort().forEach(code => {
-    const option = document.createElement("option");
-    option.value = code;
-    option.textContent = LANGUAGE_NAMES[code] || code.toUpperCase();
+  [...targets].sort().forEach(code=>{
+    const option=document.createElement("option");
+    option.value=code;
+    option.textContent=LANGUAGE_NAMES[code]||code.toUpperCase();
     targetSelect.appendChild(option);
   });
 
-  if (targets.has(preferredTarget)) {
-    targetSelect.value = preferredTarget;
-  } else if (targets.has("ar")) {
-    targetSelect.value = "ar";
-  } else if (targets.size) {
-    targetSelect.selectedIndex = 0;
-  } else {
-    targetSelect.innerHTML =
-      '<option value="">لا يوجد زوج لغات متاح</option>';
-  }
+  if(targets.has(preferredTarget))targetSelect.value=preferredTarget;
+  else if(targets.has("ar"))targetSelect.value="ar";
+  else if(targets.size)targetSelect.selectedIndex=0;
+  else targetSelect.innerHTML='<option value="">لا يوجد زوج لغات متاح</option>';
 }
 
-$("source").addEventListener("change", () => {
-  updateTargetLanguages();
-});
+$("source").addEventListener("change",()=>updateTargetLanguages());
 
-/* =====================================
-   PLANS
-===================================== */
-
-async function loadPlans() {
-  try {
-    const data = await apiFetch("/api/plans");
-    plansData = data.plans || {};
+async function loadPlans(){
+  try{
+    const data=await apiFetch("/api/plans");
+    plansData=data.plans||{};
     renderPlans();
-  } catch (error) {
-    $("plans").innerHTML =
-      '<div class="empty">تعذر تحميل الخطط.</div>';
-    console.error("Plans:", error);
+  }catch(error){
+    $("plans").innerHTML='<div class="empty">تعذر تحميل الخطط.</div>';
+    console.error("Plans:",error);
   }
 }
 
-function renderPlans() {
-  const definitions = [
-    {
-      id: "FREE",
-      title: "SOVT FREE",
-      description: "10 ملايين حرف شهريًا"
-    },
-    {
-      id: "GO",
-      title: "SOVT GO",
-      description: "30 مليون حرف شهريًا"
-    },
-    {
-      id: "PRO",
-      title: "SOVT PRO",
-      description: "100 مليون حرف شهريًا"
-    }
+function renderPlans(){
+  const definitions=[
+    {id:"FREE",title:"SOVT FREE",description:"10 ملايين حرف شهريًا"},
+    {id:"GO",title:"SOVT GO",description:"30 مليون حرف شهريًا"},
+    {id:"PRO",title:"SOVT PRO",description:"100 مليون حرف شهريًا"}
   ];
 
-  $("plans").innerHTML = definitions.map(item => {
-    const plan = plansData[item.id] || {};
-
-    const monthly = item.id === "FREE"
-      ? "مجاني"
-      : "$" + (plan.monthly ?? (item.id === "GO" ? 4.99 : 12.99)) + " / شهر";
-
-    const yearly = item.id === "FREE"
-      ? "بدون رسوم"
-      : "$" + (plan.yearly ?? (item.id === "GO" ? 49.99 : 129.99)) + " / سنة";
-
-    const characters = plan.characters ||
-      (item.id === "FREE" ? 10000000 : item.id === "GO" ? 30000000 : 100000000);
-
-    const keys = plan.keys ||
-      (item.id === "FREE" ? 1 : item.id === "GO" ? 15 : 40);
-
-    return `
-      <div class="plan-card">
-        <h3>${escapeHTML(item.title)}</h3>
-        <div class="plan-price">${escapeHTML(monthly)}</div>
-        <p>${escapeHTML(item.description)}</p>
-        <p>${formatNumber(characters)} حرف</p>
-        <p>${formatNumber(keys)} API Keys</p>
-        <p>سنويًا: ${escapeHTML(yearly)}</p>
-        <button type="button" disabled>الاشتراك قريبًا</button>
-      </div>
-    `;
+  $("plans").innerHTML=definitions.map(item=>{
+    const plan=plansData[item.id]||{};
+    const monthly=item.id==="FREE"?"مجاني":"$"+(plan.monthly??(item.id==="GO"?4.99:12.99))+" / شهر";
+    const yearly=item.id==="FREE"?"بدون رسوم":"$"+(plan.yearly??(item.id==="GO"?49.99:129.99))+" / سنة";
+    const characters=plan.characters||(item.id==="FREE"?10000000:item.id==="GO"?30000000:100000000);
+    const keys=plan.keys||(item.id==="FREE"?1:item.id==="GO"?15:40);
+    return `<div class="plan-card"><h3>${escapeHTML(item.title)}</h3><div class="plan-price">${escapeHTML(monthly)}</div><p>${escapeHTML(item.description)}</p><p>${formatNumber(characters)} حرف</p><p>${formatNumber(keys)} API Keys</p><p>سنويًا: ${escapeHTML(yearly)}</p><button type="button" disabled>الاشتراك قريبًا</button></div>`;
   }).join("");
 }
 
-/* =====================================
-   ACCOUNT AND USAGE
-===================================== */
-
-async function refreshAccountData() {
-  if (!canAccessAPI()) {
-    showLoggedOut();
-    return;
-  }
-
-  const results = await Promise.allSettled([
-    loadUsage(),
-    loadKeys()
-  ]);
-
-  const failed = results.find(result => result.status === "rejected");
-
-  if (failed) {
-    showAccountError(failed.reason);
-    console.error("Account loading error:", failed.reason);
-  }
+async function refreshAccountData(){
+  if(!canAccessAPI()){showLoggedOut();return;}
+  const results=await Promise.allSettled([loadUsage(),loadKeys()]);
+  const failed=results.find(result=>result.status==="rejected");
+  if(failed){showAccountError(failed.reason);console.error("Account loading:",failed.reason);}
 }
 
-async function loadUsage() {
-  const data = await apiFetch(
-    "/api/usage",
-    { method: "GET" },
-    true
-  );
-
-  usageData = data;
-
-  const plan = String(data.plan || "FREE").toUpperCase();
-
-  const labels = {
-    OWNER: '<span class="owner">♾️ SOVDIX OWNER</span>',
-    PRO: '<span class="pro">👑 SOVT PRO</span>',
-    GO: '<span class="go">🚀 SOVT GO</span>',
-    FREE: '<span class="free">🆓 SOVT FREE</span>'
+async function loadUsage(){
+  const data=await apiFetch("/api/usage",{method:"GET"},true);
+  usageData=data;
+  const plan=String(data.plan||"FREE").toUpperCase();
+  const labels={
+    OWNER:'<span class="owner">♾️ SOVDIX OWNER</span>',
+    PRO:'<span class="pro">👑 SOVT PRO</span>',
+    GO:'<span class="go">🚀 SOVT GO</span>',
+    FREE:'<span class="free">🆓 SOVT FREE</span>'
   };
+  $("accountPlan").innerHTML=labels[plan]||labels.FREE;
+  $("accountEmail").textContent=currentUser?.email||"";
+  $("authMessage").textContent="تم التحقق من الحساب عبر Firebase.";
 
-  $("accountPlan").innerHTML = labels[plan] || labels.FREE;
-  $("accountEmail").textContent = currentUser?.email || "";
-  $("authMessage").textContent = "تم التحقق من الحساب عبر Firebase.";
-
-  const used = Number(data.used) || 0;
-
-  if (data.limit === "unlimited") {
-    $("usageText").textContent = "♾️ استخدام غير محدود";
-    $("usageBar").style.width = "100%";
-  } else {
-    const limit = Number(data.limit) || 0;
-    const remaining = Number(data.remaining) || 0;
-
-    $("usageText").textContent =
-      formatNumber(used) + " / " +
-      formatNumber(limit) +
-      " حرف • المتبقي " +
-      formatNumber(remaining);
-
-    $("usageBar").style.width =
-      (limit > 0 ? Math.min(100, used / limit * 100) : 0) + "%";
+  const used=Number(data.used)||0;
+  if(data.limit==="unlimited"){
+    $("usageText").textContent="♾️ استخدام غير محدود";
+    $("usageBar").style.width="100%";
+  }else{
+    const limit=Number(data.limit)||0;
+    const remaining=Number(data.remaining)||0;
+    $("usageText").textContent=formatNumber(used)+" / "+formatNumber(limit)+" حرف • المتبقي "+formatNumber(remaining);
+    $("usageBar").style.width=(limit>0?Math.min(100,used/limit*100):0)+"%";
   }
 
-  const keyLimit = data.apiKeyLimit;
-
-  $("keyLimit").textContent =
-    keyLimit === "unlimited"
-      ? "♾️ يمكنك إنشاء عدد غير محدود من API Keys."
-      : "الحد الأقصى في خطتك: " + formatNumber(keyLimit) + " مفاتيح.";
-
+  const keyLimit=data.apiKeyLimit;
+  $("keyLimit").textContent=keyLimit==="unlimited"?"♾️ يمكنك إنشاء عدد غير محدود من API Keys.":"الحد الأقصى في خطتك: "+formatNumber(keyLimit)+" مفاتيح.";
   updateKeyCount();
 }
 
-/* =====================================
-   API KEY LIMIT
-===================================== */
-
-function getPlanKeyLimit() {
-  if (!usageData) return 0;
-  if (usageData.apiKeyLimit === "unlimited") return Infinity;
-  return Number(usageData.apiKeyLimit) || 0;
+function getPlanKeyLimit(){
+  if(!usageData)return 0;
+  if(usageData.apiKeyLimit==="unlimited")return Infinity;
+  return Number(usageData.apiKeyLimit)||0;
 }
 
-function updateKeyCount() {
-  const activeCount = apiKeys.filter(
-    key => Number(key.active) === 1
-  ).length;
-
-  const limit = getPlanKeyLimit();
-
-  $("keyCount").textContent =
-    limit === Infinity
-      ? activeCount + " / ♾️"
-      : activeCount + " / " + limit;
-
-  $("openKeyButton").disabled =
-    !canAccessAPI() ||
-    (limit !== Infinity && activeCount >= limit);
+function updateKeyCount(){
+  const activeCount=apiKeys.filter(isKeyActive).length;
+  const limit=getPlanKeyLimit();
+  $("keyCount").textContent=limit===Infinity?activeCount+" / ♾️":activeCount+" / "+limit;
+  $("openKeyButton").disabled=!canAccessAPI()||(limit!==Infinity&&activeCount>=limit);
 }
 
-/* =====================================
-   API KEYS
-===================================== */
-
-async function loadKeys() {
-  if (!canAccessAPI()) {
-    $("keys").innerHTML =
-      '<div class="empty">سجل الدخول أولًا.</div>';
+async function loadKeys(){
+  if(!canAccessAPI()){
+    $("keys").innerHTML='<div class="empty">سجل الدخول أولًا.</div>';
     return;
   }
-
-  const data = await apiFetch(
-    "/api/keys",
-    { method: "GET" },
-    true
-  );
-
-  apiKeys = Array.isArray(data.keys) ? data.keys : [];
+  const data=await apiFetch("/api/keys",{method:"GET"},true);
+  apiKeys=Array.isArray(data.keys)?data.keys:[];
   renderKeys();
 }
 
-function renderKeys() {
-  const box = $("keys");
+function renderKeys(){
+  const box=$("keys");
   updateKeyCount();
-
-  if (!apiKeys.length) {
-    box.innerHTML =
-      '<div class="empty">لا توجد API Keys حتى الآن.</div>';
+  if(!apiKeys.length){
+    box.innerHTML='<div class="empty">لا توجد API Keys حتى الآن.</div>';
     return;
   }
 
-  box.innerHTML = apiKeys.map(key => {
-    const id = Number(key.id);
-    const active = Number(key.active) === 1;
-
-    return `
-      <div class="key">
-        <b>${escapeHTML(key.name || "API Key")}</b>
-        <small>${escapeHTML(key.description || "بدون وصف")}</small>
-        <small>
-          المفتاح:
-          <code>${escapeHTML(key.key_prefix || "sovt_live_")}••••••••</code>
-        </small>
-        <small>النوع: ${escapeHTML(key.type || "other")}</small>
-        <small>الحالة: ${active ? "🟢 مفعّل" : "🔴 متوقف"}</small>
-        <small>تاريخ الإنشاء: ${escapeHTML(key.created_at || "غير متوفر")}</small>
-
-        <div class="key-actions">
-          ${
-            active
-              ? `<button class="danger" type="button" onclick="disableKey(${id})">⛔ إيقاف المفتاح</button>`
-              : `<button type="button" disabled>المفتاح متوقف</button>`
-          }
-        </div>
-      </div>
-    `;
+  box.innerHTML=apiKeys.map(key=>{
+    const id=Number(key.id);
+    const active=isKeyActive(key);
+    return `<div class="key">
+      <b>${escapeHTML(getKeyName(key))}</b>
+      <small>${escapeHTML(key.description||"بدون وصف")}</small>
+      <small>المفتاح: <code>${escapeHTML(key.key_prefix||"sovt_live_")}••••••••</code></small>
+      <small>النوع: ${escapeHTML(getKeyType(key))}</small>
+      <small>الحالة: ${active?"🟢 مفعّل":"🔴 متوقف"}</small>
+      <small>تاريخ الإنشاء: ${escapeHTML(key.created_at||"غير متوفر")}</small>
+      <div class="key-actions">${active?`<button class="danger" type="button" onclick="disableKey(${id})">⛔ إيقاف المفتاح</button>`:`<button type="button" disabled>المفتاح متوقف</button>`}</div>
+    </div>`;
   }).join("");
 }
 
-function openKeyModal() {
-  if (!canAccessAPI()) {
-    showToast("سجل الدخول بحساب موثّق أولًا.");
-    return;
-  }
+function clearSecret(){
+  $("secretValue").textContent="";
+  $("secret").style.display="none";
+  secretCopied=false;
+  $("copyButton").disabled=false;
+  $("savedButton").disabled=true;
+}
 
-  const limit = getPlanKeyLimit();
+function openKeyModal(){
+  if(!canAccessAPI()){showToast("سجل الدخول بحساب موثّق أولًا.");return;}
+  const limit=getPlanKeyLimit();
+  const activeCount=apiKeys.filter(isKeyActive).length;
+  if(limit!==Infinity&&activeCount>=limit){showToast("وصلت إلى حد مفاتيح API في خطتك.");return;}
 
-  const activeCount = apiKeys.filter(
-    key => Number(key.active) === 1
-  ).length;
-
-  if (limit !== Infinity && activeCount >= limit) {
-    showToast("وصلت إلى حد مفاتيح API في خطتك.");
-    return;
-  }
-
-  $("keyName").value = "";
-  $("keyDescription").value = "";
-  $("keyType").value = "website";
-
-  $("secret").style.display = "none";
-  $("secretValue").textContent = "";
-
+  clearSecret();
+  $("keyName").value="";
+  $("keyDescription").value="";
+  $("keyType").value="website";
+  $("createKeyButton").disabled=false;
   $("modal").classList.add("show");
 }
 
-function closeKeyModal() {
+function closeKeyModal(){
+  if($("secretValue").textContent&&!secretCopied){
+    showToast("انسخ المفتاح أولًا قبل الإغلاق.");
+    return;
+  }
+  clearSecret();
   $("modal").classList.remove("show");
 }
 
-async function createKey() {
-  if (!canAccessAPI()) {
-    showToast("سجل الدخول أولًا.");
-    return;
-  }
+async function createKey(){
+  if(creatingKey)return;
+  if(!canAccessAPI()){showToast("سجل الدخول أولًا.");return;}
 
-  const name = $("keyName").value.trim();
-  const description = $("keyDescription").value.trim();
-  const type = $("keyType").value;
+  const name=$("keyName").value.trim();
+  const description=$("keyDescription").value.trim();
+  const type=$("keyType").value;
 
-  if (!name) {
-    showToast("اكتب اسم المفتاح أولًا.");
-    return;
-  }
+  if(!name){showToast("اكتب اسم المفتاح أولًا.");return;}
 
-  const button = $("createKeyButton");
-  button.disabled = true;
-  button.textContent = "جاري الإنشاء...";
+  creatingKey=true;
+  const button=$("createKeyButton");
+  button.disabled=true;
+  button.textContent="جاري الإنشاء...";
 
-  try {
-    const data = await apiFetch(
-      "/api/keys",
-      {
-        method: "POST",
-        body: JSON.stringify({ name, description, type })
-      },
-      true
-    );
+  try{
+    const data=await apiFetch("/api/keys",{
+      method:"POST",
+      body:JSON.stringify({name,description,type})
+    },true);
 
-    if (!data.key) {
-      throw new Error("لم يصل المفتاح من API.");
-    }
+    if(!data.key)throw new Error("لم يصل المفتاح من API.");
 
-    $("secretValue").textContent = data.key;
-    $("secret").style.display = "block";
+    $("secretValue").textContent=data.key;
+    $("secret").style.display="block";
+    $("copyButton").disabled=false;
+    $("savedButton").disabled=true;
 
-    await Promise.allSettled([
-      loadKeys(),
-      loadUsage()
-    ]);
-
-    showToast("✓ تم إنشاء API Key بنجاح.");
-
-  } catch (error) {
-    showToast("❌ " + describeAPIError(error));
-  } finally {
-    button.disabled = false;
-    button.textContent = "إنشاء المفتاح";
+    await Promise.allSettled([loadKeys(),loadUsage()]);
+    showToast("✓ تم إنشاء API Key. انسخه واحفظه الآن.");
+  }catch(error){
+    showToast("❌ "+describeAPIError(error));
+  }finally{
+    creatingKey=false;
+    button.disabled=false;
+    button.textContent="إنشاء المفتاح";
   }
 }
 
-async function disableKey(id) {
-  if (!canAccessAPI()) {
-    showToast("سجل الدخول أولًا.");
-    return;
-  }
+async function disableKey(id){
+  if(!canAccessAPI()){showToast("سجل الدخول أولًا.");return;}
+  if(!confirm("هل تريد إيقاف هذا المفتاح؟ لن يستطيع استخدام API بعد ذلك."))return;
 
-  if (!confirm("هل تريد إيقاف هذا المفتاح؟ لن يستطيع استخدام API بعد ذلك.")) {
-    return;
-  }
-
-  try {
-    await apiFetch(
-      "/api/keys/" + encodeURIComponent(id),
-      { method: "DELETE" },
-      true
-    );
-
-    await Promise.allSettled([
-      loadKeys(),
-      loadUsage()
-    ]);
-
+  try{
+    await apiFetch("/api/keys/"+encodeURIComponent(id),{method:"DELETE"},true);
+    await Promise.allSettled([loadKeys(),loadUsage()]);
     showToast("تم إيقاف المفتاح.");
-
-  } catch (error) {
-    showToast("❌ " + describeAPIError(error));
-  }
+  }catch(error){showToast("❌ "+describeAPIError(error));}
 }
 
-async function copyKey() {
-  const key = $("secretValue").textContent.trim();
-  if (!key) return;
+async function copyKey(){
+  const key=$("secretValue").textContent.trim();
+  if(!key)return;
 
-  try {
+  try{
     await navigator.clipboard.writeText(key);
-    showToast("📋 تم نسخ API Key.");
-  } catch (error) {
-    showToast("تعذر النسخ التلقائي. انسخ المفتاح يدويًا.");
+    secretCopied=true;
+    $("savedButton").disabled=false;
+    showToast("📋 تم نسخ API Key. احفظه في مكان آمن.");
+  }catch(error){
+    showToast("تعذر النسخ التلقائي. تحقق من صلاحية الحافظة.");
   }
 }
 
-/* =====================================
-   TRANSLATION
-===================================== */
-
-async function translateText() {
-  const text = $("text").value.trim();
-  const source = $("source").value;
-  const target = $("target").value;
-
-  const result = $("result");
-  const button = $("translateButton");
-
-  if (!text) {
-    result.className = "result error";
-    result.textContent = "اكتب نصًا أولًا.";
+function confirmKeySaved(){
+  if(!secretCopied){
+    showToast("انسخ المفتاح أولًا.");
     return;
   }
+  clearSecret();
+  $("modal").classList.remove("show");
+  showToast("تم إغلاق نافذة المفتاح ومسح قيمته من الصفحة.");
+}
 
-  if (!target) {
-    result.className = "result error";
-    result.textContent = "اختر لغة الترجمة.";
-    return;
-  }
+async function translateText(){
+  const text=$("text").value.trim();
+  const source=$("source").value;
+  const target=$("target").value;
+  const result=$("result");
+  const button=$("translateButton");
 
-  if (!canAccessAPI()) {
-    result.className = "result error";
-    result.textContent = "سجل الدخول بحساب موثّق لاستخدام محرك الترجمة.";
-    return;
-  }
+  if(!text){result.className="result error";result.textContent="اكتب نصًا أولًا.";return;}
+  if(!target){result.className="result error";result.textContent="اختر لغة الترجمة.";return;}
+  if(!canAccessAPI()){result.className="result error";result.textContent="سجل الدخول بحساب موثّق لاستخدام محرك الترجمة.";return;}
+  if(source===target){result.className="result success";result.textContent=text;return;}
 
-  if (source === target) {
-    result.className = "result success";
-    result.textContent = text;
-    return;
-  }
+  button.disabled=true;
+  result.className="result";
+  result.textContent="جاري إرسال النص إلى SOVT API... ⚡";
 
-  button.disabled = true;
-  result.className = "result";
-  result.textContent = "جاري البحث في قواميس SOVT عبر GitHub... 📚";
+  try{
+    const data=await apiFetch("/api/translate",{
+      method:"POST",
+      body:JSON.stringify({text,source,target})
+    },true);
 
-  try {
-    const data = await apiFetch(
-      "/api/translate",
-      {
-        method: "POST",
-        body: JSON.stringify({ text, source, target })
-      },
-      true
-    );
-
-    result.className = "result success";
-    result.textContent = data.translation || "لم تصل نتيجة.";
-
-    showToast(
-      "✓ تمت الترجمة باستخدام " +
-      (data.dictionary || "SOVT Dictionary")
-    );
-
-    await loadUsage();
-
-  } catch (error) {
-    result.className = "result error";
-
-    if (error.status >= 500) {
-      result.textContent =
-        "❌ خطأ داخلي من SOVT API (HTTP " + error.status + ").\n" +
-        "اتصال الصفحة ناجح، لكن Worker فشل أثناء تنفيذ الترجمة. نحتاج مراجعة سجلات Worker لمعرفة السبب.";
-    } else {
-      result.textContent = "❌ " + error.message;
+    if(typeof data.translation!=="string"||!data.translation.trim()){
+      throw new Error("استجابة API لا تحتوي على ترجمة صالحة.");
     }
 
-    console.error("SOVT translation error:", error);
-
-  } finally {
-    button.disabled = false;
+    result.className="result success";
+    result.textContent=data.translation;
+    showToast("✓ تمت الترجمة عبر SOVT API.");
+    await loadUsage().catch(error=>console.warn("Usage refresh:",error));
+  }catch(error){
+    result.className="result error";
+    result.textContent="❌ "+describeAPIError(error);
+    console.error("SOVT translation error:",error);
+  }finally{
+    button.disabled=false;
   }
 }
 
-/* =====================================
-   REFRESH
-===================================== */
-
-async function refreshAll() {
+async function refreshAll(){
   showToast("جاري تحديث SOVT...");
-
-  const tasks = [
-    loadAPI(),
-    loadLanguages(),
-    loadPlans()
-  ];
-
-  if (canAccessAPI()) {
-    tasks.push(refreshAccountData());
-  }
-
+  const tasks=[loadAPI(),loadLanguages(),loadPlans()];
+  if(canAccessAPI())tasks.push(refreshAccountData());
   await Promise.allSettled(tasks);
-
-  showToast("تم تحديث البيانات.");
+  showToast("اكتمل تحديث البيانات.");
 }
 
-/* =====================================
-   INITIALIZATION
-===================================== */
-
-async function init() {
-  // Public endpoints do not require a login.
-  const publicTasks = Promise.allSettled([
-    loadAPI(),
-    loadLanguages(),
-    loadPlans()
-  ]);
-
-  try {
+async function init(){
+  const publicTasks=Promise.allSettled([loadAPI(),loadLanguages(),loadPlans()]);
+  try{
     await initializeAuth();
-  } catch (error) {
-    console.error("Firebase initialization:", error);
-
-    $("accountPlan").textContent =
-      "تعذر الاتصال بنظام تسجيل الدخول";
-
-    $("authMessage").textContent =
-      error.message || "تعذر تشغيل Firebase.";
-
-    $("keys").innerHTML =
-      '<div class="empty">تعذر تحميل Firebase Auth.</div>';
+  }catch(error){
+    console.error("Firebase initialization:",error);
+    $("accountPlan").textContent="تعذر الاتصال بنظام تسجيل الدخول";
+    $("authMessage").textContent=error.message||"تعذر تشغيل Firebase.";
+    $("keys").innerHTML='<div class="empty">تعذر تحميل Firebase Auth.</div>';
   }
-
   await publicTasks;
 }
 
-$("modal").addEventListener("click", event => {
-  if (event.target === $("modal")) {
-    closeKeyModal();
-  }
+$("modal").addEventListener("click",event=>{
+  if(event.target===$("modal"))closeKeyModal();
 });
 
 init();
 </script>
-
 </body>
 </html>
-```
-
-## مهم جدًا قبل النشر
-
-**أولًا: استعادة الصورة**
-
-الكود يستخدم المسار الجديد:
-
-`images/sovdix_logo.png`
-
-حتى نحافظ على الصورة نفسها من دون إبقاء اسم الهوية القديمة في الكود، غيّر اسم ملف الصورة الموجود في GitHub من `itachi_logo.png` إلى `sovdix_logo.png`. لا تغيّر محتوى الصورة.
-
-**ثانيًا: مشكلة الترجمة**
-
-الصفحة الآن تصل إلى الـWorker وتعرض الخطأ بوضوح، لكن ظهور HTTP 500 لا يمكن إصلاحه من `api.html` وحده.
-
-<badge color="warning">الخطوة التالية</badge>
-
-أرسل لي كود `worker.js` الموجود حاليًا في Cloudflare، وسأراجع سبب الخطأ الداخلي وأعطيك التصحيح كاملًا. لا نغيّر شيئًا في قاعدة البيانات حاليًا.
